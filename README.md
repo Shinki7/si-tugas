@@ -8,7 +8,8 @@
 </p>
 Changelog:
 
--OnProgress
+- OnProgress
+- madefaker lupa first commit
 
 
 ## About Laravel
