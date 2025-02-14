@@ -72,7 +72,6 @@ class KelasController extends Controller
     }
     public function show($id){
         $siswa = Mahasiswa::All();
-
         return view('dashboard.kelas.inputsiswa', compact('siswa', 'id'));
     }
     public function inputsiswa(Request $request, $id){
@@ -91,5 +90,4 @@ class KelasController extends Controller
         $kelas->delete();
         return redirect(route('kelas.index'))->with(['success'=>'Kelas Dihapus']);
     }
-
 }
