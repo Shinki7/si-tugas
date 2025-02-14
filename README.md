@@ -9,7 +9,7 @@
 Changelog:
 
 - OnProgress
-- madefaker lupa first commit
+- Blud lupa first commit
 
 
 ## About Laravel
