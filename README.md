@@ -8,7 +8,8 @@
 </p>
 Changelog:
 
--OnProgress
+- OnProgress
+- Blud lupa first commit
 
 
 ## About Laravel
