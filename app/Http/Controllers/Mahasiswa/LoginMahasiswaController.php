@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 class LoginMahasiswaController extends Controller
 {
     public function index(){
-        if(auth()->guard('mahasiswa')->check()) return redirect(route('mahasiswa.home'));
+        if(auth()->guard('mahasiswa')->check()) return redirect(route('mahasiswa.index'));
         return view('mahasiswa.login');
     }
 

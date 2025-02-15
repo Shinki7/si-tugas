@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Matkul;
 use App\Models\Mahasiswa;
+use App\Models\Kelas_Mahasiswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -79,12 +80,51 @@ class KelasController extends Controller
             'mahasiswa_id' => 'required|array',
             'mahasiswa_id.*' => 'exists:mahasiswa,id',
         ]);
+        try {
+            $kelas = Kelas::findOrFail($id);
 
-        $kelas = Kelas::findOrFail($id);
-        $kelas->mahasiswa()->attach($request->mahasiswa_id);
+            // Ambil mahasiswa yang sudah ada di kelas ini
+            $existingMahasiswa = $kelas->mahasiswa()->whereIn('mahasiswa_id', $request->mahasiswa_id)->pluck('mahasiswa_id')->toArray();
 
-        return redirect(route('kelas.index'))->with(['success' => 'Mahasiswa Berhasil Ditambahkan']);
+            // Cek apakah ada mahasiswa yang sudah terdaftar
+            if (!empty($existingMahasiswa)) {
+                return redirect()->back()->with([
+                    'error' => 'mahasiswa sudah terdaftar di kelas ini.'
+                ]);
+            }
+
+            // Jika belum terdaftar, tambahkan mahasiswa ke kelas
+            $kelas->mahasiswa()->attach($request->mahasiswa_id);
+
+            return redirect()->route('kelas.listsiswa', $id)->with('success', 'Mahasiswa berhasil ditambahkan ke kelas.');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with([
+                'error' => 'Terjadi kesalahan saat menambahkan mahasiswa.'
+            ]);
+        }
     }
+    public function listSiswa($kelas_id)
+{
+    $kelas = Kelas::with('mahasiswa')->findOrFail($kelas_id);
+    return view('dashboard.kelas.listsiswa', compact('kelas'));
+}
+
+public function editSiswa($kelas_id, $mahasiswa_id)
+{
+    $kelas = Kelas::findOrFail($kelas_id);
+    $mahasiswa = Mahasiswa::findOrFail($mahasiswa_id);
+    return view('dashboard.kelas.edit_siswa', compact('kelas', 'mahasiswa'));
+}
+
+public function removeSiswa($kelas_id, $mahasiswa_id)
+{
+    $kelas = Kelas::findOrFail($kelas_id);
+    $kelas->mahasiswa()->detach($mahasiswa_id);
+
+    return redirect()->route('kelas.listsiswa', $kelas_id)->with('success', 'Mahasiswa berhasil dihapus dari kelas.');
+}
+
     public function destroy($id){
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();

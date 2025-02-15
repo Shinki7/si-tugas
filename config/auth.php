@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'mahasiswa',
         ],
+        'dosen' => [
+            'driver' => 'session',
+            'provider' => 'dosen',
+        ]
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'mahasiswa'=>[
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\Mahasiswa::class),
+        ],
+        'dosen'=>[
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Dosen::class),
         ],
 
         // 'users' => [

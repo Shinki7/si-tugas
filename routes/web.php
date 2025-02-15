@@ -14,6 +14,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function (){
     Route::resource('kelas', 'App\Http\Controllers\KelasController');
     Route::resource('matkul', 'App\Http\Controllers\MatkulController');
     Route::post('/kelas/{id}/inputsiswa', [KelasController::class, 'inputsiswa'])->name('kelas.inputsiswa');
+    Route::get('/kelas/{kelas_id}/mahasiswa', [KelasController::class, 'listSiswa'])->name('kelas.listsiswa');
+Route::get('/kelas/{kelas_id}/mahasiswa/{mahasiswa_id}/edit', [KelasController::class, 'editSiswa'])->name('kelas.editsiswa');
+Route::delete('/kelas/{kelas_id}/mahasiswa/{mahasiswa_id}', [KelasController::class, 'removeSiswa'])->name('kelas.removesiswa');
 
 });
 
@@ -30,4 +33,10 @@ Route::group(['prefix' => 'Mahasiswa',], function () {
     Route::get('register', [RegisterMahasiswaController::class, 'RegisterForm'])->name('show.register');
     Route::post('register-mahasiswa', [RegisterMahasiswaController::class, 'Register'])->name('register.mahasiswa');
     Route::get('verify/{token}', [HomeMahasiswaController::class, 'verifMahasiswaRegistration'])->name('mahasiswa.verify');
+});
+
+Route::group(['prefix' => 'Dosen',], function () {
+    Route::get('login', [App\Http\Controllers\Dosen\LoginDosenController::class, 'index'])->name('dosen.login');
+    Route::post('login-dosen', [App\Http\Controllers\Dosen\LoginDosenController::class, 'login'])->name('login.dosen');
+    Route::get('logout', [App\Http\Controllers\Dosen\LoginDosenController::class, 'logout'])->name('dosen.logout');
 });

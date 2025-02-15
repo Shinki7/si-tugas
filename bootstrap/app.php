@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'mahasiswa' => \App\Http\Middleware\MahasiswaAuthenticate::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            'dosen' => \App\Http\Middleware\DosenAuthenticate::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

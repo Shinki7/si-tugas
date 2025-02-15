@@ -68,6 +68,7 @@
                                                     @method('DELETE')
                                                     <a href="{{ route('kelas.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="{{ route('kelas.show',$row->id) }}" class="btn btn-warning btn-sm">Input Siswa</a>
+                                                    <a href="{{ route('kelas.listsiswa',$row->id) }}" class="btn btn-warning btn-sm">List Siswa</a>
                                                     <button class="btn btn-danger btn-sm">Hapus</button>
                                                 </form>
                                             </td>

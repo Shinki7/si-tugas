@@ -28,7 +28,7 @@ class RegisterMahasiswaController extends Controller
             'password'=>'required',
         ]);
         try {
-            $mahasiswa =Mahasiswa::where('email', $request->email)->first();
+            $mahasiswa = Mahasiswa::where('email', $request->email)->first();
             if (!auth()->guard('mahasiswa')->check() && $mahasiswa) {
                 return redirect()->back()->with([
                     'error' => 'Email Sudah Terdaftar'
