@@ -35,14 +35,11 @@
                 <div class="bg-white shadow rounded">
                     <div class="row">
                         <div class="col-md-12 pe-0">
-                            @if (session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                        @endif
-
-                        @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
-                        @endif
+                            @if (session('LoginError'))
+                                <div class="alert alert-danger">Password Atau NIDN Salah</div>
+                            @endif
                             <div class="form-left h-100 py-5 px-5">
+                                <h2 class="mb-3">Login Dosen</h2>
                                 <form action="{{route('login.dosen')}}" method="POST" class="row g-4">
                                     @csrf
                                         <div class="col-12">

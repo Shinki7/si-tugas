@@ -11,6 +11,17 @@ Changelog:
 - OnProgress
 - Blud lupa first commit
 
+Included:
+- Admin:
+- Crud: Kelas - MatKul
+- Auth
+
+- Mahasiswa:
+- Auth
+
+- Dosen:
+- Auth
+
 
 ## About Laravel
 

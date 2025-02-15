@@ -22,6 +22,12 @@
                             <div class="card-header">
                                 <h4 class="card-title">Tambah Produk</h4>
                             </div>
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
+                            @endif
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="kelas">Nama Kelas</label>

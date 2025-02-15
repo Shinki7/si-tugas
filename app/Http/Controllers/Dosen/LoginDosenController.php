@@ -9,22 +9,22 @@ use Illuminate\Http\Request;
 class LoginDosenController extends Controller
 {
     public function index(){
-        if(auth()->guard('dosen')->check()) return redirect(route('dosen.index'));
+        if(auth()->guard('dosen')->check()) return redirect(route('dosen.dashboard'));
         return view('dosen.login');
     }
     public function login(Request $request){
 
         $request->validate( [
-            'nidn' => 'required|nidn|exists:dosen,nidn',
+            'nidn' => 'required|exists:dosen,nidn',
             'password' => 'required',
         ]);
 
         $auth = $request->only('nidn', 'password');
         if (auth()->guard('dosen')->attempt($auth)) {
-            return redirect()->route('dosen.index');
+            return redirect()->route('dosen.dashboard');
         }
-        return redirect()->back()->withErrors([
-            'error' => 'nidn atau password salah'
+        return back()->with([
+            'LoginError' => 'nidn atau password salah'
         ]);
     }
 

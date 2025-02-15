@@ -22,7 +22,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <a href="/logout">
+            <a href="/logout-dosen">
               <button type="button" class="btn btn-dark">Logout</button>
             </a>
 

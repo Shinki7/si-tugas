@@ -10,12 +10,6 @@
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item active">Tambah Tamu</li>
     </ol>
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-        @if (session('error'))
-            <div class="alert alert-danger">{{ session('error') }}</div>
-        @endif
     <div class="container-fluid">
         <div class="animated fadeIn">
             <div class="row">
@@ -25,12 +19,17 @@
                             <h4 class="card-title">
                                 List Product
                                 <!-- BUAT TOMBOL UNTUK MENGARAHKAN KE HALAMAN ADD PRODUK -->
-                                <a href="{{ route('kelas.create') }}" class="btn btn-primary btn-sm float-right">Tambah</a>
+                                <a href="{{ route('dosen.create') }}" class="btn btn-primary btn-sm float-right">Tambah</a>
                             </h4>
                         </div>
-
+                        @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">{{ session('error') }}</div>
+                        @endif
                             <!-- BUAT FORM UNTUK PENCARIAN, METHODNYA ADALAH GET -->
-                            <form action="{{ route('kelas.index') }}" method="get">
+                            <form action="{{ route('dosen.index') }}" method="get">
                                 <div class="input-group mb-3 col-md-3 float-right">
                                     <!-- KEMUDIAN NAME-NYA ADALAH Q YANG AKAN MENAMPUNG DATA PENCARIAN -->
                                     <input type="text" name="q" class="form-control" placeholder="Cari..." value="{{ request()->q }}">
@@ -47,34 +46,26 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nama</th>
-                                            <th>Jurusan</th>
-                                            <th>Mata Kuliah</th>
-                                            <th>Angkatan</th>
-                                            <th>Semester</th>
+                                            <th>NIDN</th>
+                                            <th>Email</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- LOOPING DATA TERSEBUT MENGGUNAKAN FORELSE -->
-                                        @forelse ($kelas as $row)
+                                        @forelse ($dosen as $row)
                                         <tr>
                                             <td>{{ $row->id }}</td>
                                             <td>
-                                                <strong>{{ $row->kelas }}</strong><br>
-                                                <!-- ADAPUN NAMA KATEGORINYA DIAMBIL DARI HASIL RELASI PRODUK DAN KATEGORI -->
+                                                <strong>{{ $row->nama }}</strong><br>
                                             </td>
-                                            <td><Strong>{{ $row->jurusan }}</Strong></td>
-                                            <td><Strong>{{ $row->matkul->nm_mk }}</Strong></td>
-                                            <td><Strong>{{ $row->angkatan }}</Strong></td>
-                                            <td><Strong>{{ $row->semester }}</Strong></td>
+                                            <td><Strong>{{ $row->nidn }}</Strong></td>
+                                            <td><Strong>{{ $row->email }}</Strong></td>
                                             <td>
                                                 <!-- FORM UNTUK MENGHAPUS DATA PRODUK -->
-                                                <form action="{{ route('kelas.destroy', $row->id) }}" method="post">
+                                                <form action="{{ route('dosen.destroy', $row->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('kelas.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                    <a href="{{ route('kelas.show',$row->id) }}" class="btn btn-warning btn-sm">Input Siswa</a>
-                                                    <a href="{{ route('kelas.listsiswa',$row->id) }}" class="btn btn-warning btn-sm">List Siswa</a>
+                                                    <a href="{{ route('dosen.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                                     <button class="btn btn-danger btn-sm">Hapus</button>
                                                 </form>
                                             </td>
@@ -88,7 +79,7 @@
                                 </table>
                             </div>
                             <!-- MEMBUAT LINK PAGINASI JIKA ADA -->
-                            {!! $kelas->links() !!}
+                            {!! $dosen->links() !!}
                         </div>
                     </div>
                 </div>

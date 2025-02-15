@@ -35,8 +35,11 @@
                 <div class="bg-white shadow rounded">
                     <div class="row">
                         <div class="col-md-12 pe-0">
-                            @if (session('loginError'))
-                                <div class="alert alert-danger">Username atau Password salah!</div>
+                            @if (session('success'))
+                                <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger">{{ session('error') }}</div>
                             @endif
                             <div class="form-left h-100 py-5 px-5">
                                 <form action="{{route('login.admin')}}" method="POST" class="row g-4">

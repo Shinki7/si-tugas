@@ -4,7 +4,12 @@
 <div class="container-fluid">
     <div class="row">
 
-
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
         <!-- Konten utama -->
         <main class="col-md-10 ml-sm-auto px-4">
             <h3 class="my-3">Mahasiswa di {{ $kelas->kelas }}</h3>

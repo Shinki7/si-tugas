@@ -10,6 +10,12 @@
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item active">Tambah Mahasiswa ke Kelas</li>
     </ol>
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
     <div class="container-fluid">
         <div class="animated fadeIn">
             <form action="{{ route('kelas.removesiswa', $id) }}" method="post">
