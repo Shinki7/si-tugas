@@ -42,6 +42,7 @@
                                 <div class="alert alert-danger">{{ session('error') }}</div>
                             @endif
                             <div class="form-left h-100 py-5 px-5">
+                                <h2 class="mb-3">SUPERADMIN</h2>
                                 <form action="{{route('login.admin')}}" method="POST" class="row g-4">
                                     @csrf
                                         <div class="col-12">

@@ -1,36 +1,29 @@
-@extends('dosen.layouts.app')
+@extends('dosen.layout.admin')
 
 @section('content')
-<div class="d-flex gap-4">
-    <div class="card w-100 text-bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Data User</div>
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h1 class="p"></h1>
-            <i class="bi bi-person-circle" style="font-size: 50px"></i>
-          </div>
-        </div>
-      </div>
-      <div class="card w-100 text-bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Data Report</div>
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-                <h1 class="p"></h1>
-                <i class="bi bi-bar-chart-fill" style="font-size: 50px"></i>
-              </div>
-        </div>
-      </div>
-      <div class="card w-100 text-bg-primary mb-3" style="max-width: 18rem;">
-        <div class="card-header">Data Penyakit</div>
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-                <h1 class="p"></h1>
-                <i class="bi bi-clipboard2-pulse-fill" style="font-size: 50px"></i>
-              </div>
-        </div>
-      </div>
-</div>
 
+<main class="main">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">SELAMAT DATANG {{auth()->guard('dosen')->user()->nama}}</h4>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 @endsection
 
 @push('script')

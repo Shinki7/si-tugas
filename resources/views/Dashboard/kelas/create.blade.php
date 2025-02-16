@@ -61,6 +61,18 @@
                                     </select>
                                     <p class="text-danger">{{ $errors->first('matkul_id') }}</p>
                                 </div>
+                                <div class="form-group">
+                                    <label for="category_id">Dosen</label>
+
+                                    <!-- DATA KATEGORI DIGUNAKAN DISINI, SEHINGGA SETIAP PRODUK USER BISA MEMILIH KATEGORINYA -->
+                                    <select name="dosen_id" class="form-control">
+                                        <option value="">Pilih</option>
+                                        @foreach ($dosen as $dos)
+                                        <option value="{{ $dos->id }}" {{ old('dosen_id') == $dos->id ? 'selected':'' }}>{{ $dos->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    <p class="text-danger">{{ $errors->first('dosen_id') }}</p>
+                                </div>
 
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-sm">Tambah</button>

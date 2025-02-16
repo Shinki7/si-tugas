@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Matkul;
 use App\Models\Mahasiswa;
+use App\Models\Dosen;
 use App\Models\Kelas_Mahasiswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -13,21 +14,21 @@ use Illuminate\Routing\Controller;
 class KelasController extends Controller
 {
     public function index(){
-        $kelas = Kelas::with('matkul')->paginate(10);
-
-        return view('dashboard.kelas.index', compact('kelas'));
+        $kelas = Kelas::with('matkul', 'dosen')->paginate(10);
+        return view('dashboard.kelas.index', compact('kelas', ));
     }
 
     public function create(){
         $matkul = Matkul::orderBy('nm_mk', 'DESC')->get();
-
-        return view('dashboard.kelas.create', compact( 'matkul'));
+        $dosen = Dosen::orderBy('nama', 'DESC')->get();
+        return view('dashboard.kelas.create', compact( 'matkul', 'dosen'));
     }
 
     public function store(Request $request){
         $request->validate([
             'kelas' => 'required',
             'matkul_id' => 'required|exists:matkul,id',
+            'dosen_id' => 'required|exists:dosen,id',
             'jurusan' => 'required',
             'angkatan' => 'required',
             'semester' => 'required',
@@ -36,6 +37,7 @@ class KelasController extends Controller
         $kelas=Kelas::create([
             'kelas' => $request->kelas,
             'matkul_id' => $request->matkul_id,
+            'dosen_id' => $request->dosen_id,
             'jurusan' => $request->jurusan,
             'angkatan' => $request->angkatan,
             'semester' => $request->semester,
@@ -43,10 +45,12 @@ class KelasController extends Controller
         return redirect(route('kelas.index'))->with([
             'success' => 'Kelas Berhasil Ditambahkan']);
     }
+
     public function edit($id){
         $kelas = Kelas::find($id);
         $matkul = Matkul::All();
-        return view('dashboard.kelas.edit', compact('kelas', 'matkul'));
+        $dosen = Dosen::All();
+        return view('dashboard.kelas.edit', compact('kelas', 'matkul', 'dosen'));
     }
     public function update(Request $request, $id){
         $request->validate( [
@@ -63,7 +67,10 @@ class KelasController extends Controller
             'angkatan' => $request->angkatan,
             'semester' => $request->semester,
         ];
-        if ($request->has('matkul_id') && !is_null($request->matkul_id)) {
+        if (!is_null($request->dosen_id)) {
+            $data['dosen_id'] = $request->dosen_id;
+        }
+        if ($request->has('matkul_id', 'dosen_id') && !is_null($request->matkul_id)) {
             $data['matkul_id'] = $request->matkul_id;
         }
 
