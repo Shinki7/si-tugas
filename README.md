@@ -14,7 +14,7 @@ Changelog:
 Included:
 
 Admin:
-- Crud: Kelas - MatKul
+- CRUD: Kelas - MatKul
 - Auth
 
 Mahasiswa:
@@ -22,6 +22,7 @@ Mahasiswa:
 
 Dosen:
 - Auth
+- CRUD: Kelas
 
 
 ## About Laravel
