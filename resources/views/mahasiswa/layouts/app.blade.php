@@ -35,15 +35,15 @@
             <h5 class="mb-4 text-center">Dashboard</h5>
           </li>
           <li class="nav-item">
-            <a href="/dashboard/home" class="{{Request::is('Mahasiswa/home') ? 'active text-white' : ''}} nav-link link-dark " aria-current="page">
+            <a href="/Mahasiswa/home" class="{{Request::is('Mahasiswa/home') ? 'active text-white' : ''}} nav-link link-dark " aria-current="page">
                 <i class="bi bi-archive-fill" style="font-size: 1.2rem;"></i>
               Home
             </a>
           </li>
           <li class="nav-item">
-            <a href="/dashboard/penyakit" class="{{Request::is('dashboard/penyakit') ? 'active text-white' : ''}} nav-link link-dark">
+            <a href="{{Route('kelasmahasiswa.index')}}" class="{{Request::is('Mahasiswa/kelasmahasiswa') ? 'active text-white' : ''}} nav-link link-dark">
                 <i class="bi bi-building-fill-add" style="font-size: 1.2rem;"></i>
-              Tingkat Stress
+              Kelas
             </a>
           </li>
           <li class="nav-item">

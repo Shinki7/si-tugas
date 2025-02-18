@@ -51,15 +51,13 @@
                                 <!-- Semester -->
                                 <di class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="text" name="password" class="form-control" value="{{ old('password') }}" required>
+                                    <input type="password" name="password" class="form-control" value="{{ old('password') }}" required>
                                     <p class="text-danger">{{ $errors->first('password') }}</p>
-                                </di
-
+                                </div>
                                 <!-- Tombol Submit -->
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-sm">Simpan</button>
                                 </div>
-
                             </div> <!-- card-body selesai di sini -->
                         </div> <!-- card selesai di sini -->
                     </div> <!-- col-md-8 selesai di sini -->

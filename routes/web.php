@@ -38,7 +38,7 @@ Route::post('login-mahasiswa',[LoginMahasiswaController::class, 'login'])->name(
 
 Route::group(['prefix' => 'Mahasiswa','middleware' => 'mahasiswa'], function () {
     Route::get('home', [HomeMahasiswaController::class, 'index'])->name('mahasiswa.index');
-
+    Route::resource('kelasmahasiswa', 'App\Http\Controllers\Mahasiswa\KelasMahasiswaController');
 });
 
 Route::get('Dosen/login', [App\Http\Controllers\Dosen\LoginDosenController::class, 'index'])->name('dosen.login');
